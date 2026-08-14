@@ -24,7 +24,7 @@ import type {} from '@deepseek-ai/dsh-settings'
 import type { SubprocessHandle, SubprocessSpawnSpec } from '@deepseek-ai/dsh-subprocess'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { connect } from 'node:net'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 /** Settings namespace of this plugin: the persistent enable switch. */
 const WIKI_NS = 'wiki-entry'
@@ -62,14 +62,14 @@ export interface Config {
 }
 
 export const Config: z<Config> = z.object({
-  wikiRoot: z.string().default('E:/DeepseekAgent/wiki'),
+  wikiRoot: z.string().default('./wiki'),
   port: z.natural().default(8099),
   prefix: z.string().default('/wiki'),
 })
 
 /** Host plugin body: settings namespace, web routes, and server lifecycle. */
 export function apply(ctx: Context, config: Config): void {
-  const root = config.wikiRoot ?? 'E:/DeepseekAgent/wiki'
+  const root = resolve(config.wikiRoot ?? './wiki')
   const port = config.port ?? 8099
   const prefix = config.prefix ?? '/wiki'
   const url = `http://127.0.0.1:${port}${prefix}/`

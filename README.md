@@ -61,6 +61,34 @@
 | 插件市场与管理 | dsh-plugins-marketplace, dsh-plugin-hub, dsh-plugin-store | 7 |
 | 桌面与扩展（非标准 bundle） | deepseek-harness-desktop, jacobian, Mobius 等 | 9 |
 
+#### 自研插件
+
+- **[dsh-wiki-entry](plugins/dsh-wiki-entry/)** — DSH Web UI 右上角 Wiki 入口：首次点击自动启动本地 Wiki 静态服务器（端口 8099，`/wiki` 前缀）并打开，设置 → 插件 中可持久化开关。
+
+---
+
+## 插件安装
+
+### 方式一：通过 DSH 插件命令安装（推荐）
+
+```bash
+# 安装本仓库的 dsh-wiki-entry 插件（本地路径）
+dsh plugin --profile web add <本仓库克隆路径>/plugins/dsh-wiki-entry
+
+# 或按插件文档中的 npm / GitHub 安装方式
+dsh plugin add @some-org/dsh-xxx              # npm 包
+dsh plugin add github:author/repo             # GitHub 仓库
+dsh plugin add file:<本地路径>                 # 本地目录
+```
+
+### 方式二：通过插件市场/商店安装
+
+- [dsh-plugins-marketplace](wiki/docs/plugins/dsh-plugins-marketplace.md) — Web GUI 一键浏览/安装/更新
+- [dsh-plugin-hub](wiki/docs/plugins/dsh-plugin-hub.md) — 插件管理面板 + GitHub 市场
+- [dsh-plugin-store](wiki/docs/plugins/dsh-plugin-store.md) — 图形 app-store
+
+> 每个插件的具体安装方式、依赖与兼容性要求，请查看 [插件百科](wiki/docs/plugins/index.md) 中对应插件的「使用指南」段落。
+
 ---
 
 ## 目录结构

@@ -21,9 +21,11 @@ bundle patch 将本插件挂入宿主组合；包内 `dsh.client` 声明使浏�
 
 | 配置项 | 默认值 | 说明 |
 |---|---|---|
-| `wikiRoot` | `E:/DeepseekAgent/wiki` | Wiki checkout 根目录，静态站点位于 `<root>/site` |
+| `wikiRoot` | `./wiki` | Wiki 检出根目录（相对 DSH 工作目录），静态站点位于 `<root>/site`；可配置为绝对路径 |
 | `port` | `8099` | Wiki 服务器监听端口 |
 | `prefix` | `/wiki` | 站点 URL 前缀 |
+
+> 提示：`wikiRoot` 默认为相对路径，实际运行时会基于 DSH 进程工作目录解析为绝对路径，也可通过插件配置显式指定。
 
 ## 工作原理
 

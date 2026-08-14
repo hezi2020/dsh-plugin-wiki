@@ -4,11 +4,14 @@
 // WIKI_PREFIX (/wiki).
 import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
-import { extname, join, normalize, resolve, sep } from 'node:path'
+import { dirname, extname, join, normalize, resolve, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const HOST = '127.0.0.1'
 const PORT = Number(process.env.WIKI_PORT ?? 8099)
-const ROOT = resolve(process.env.WIKI_ROOT ?? 'E:/DeepseekAgent/wiki/site')
+// 默认站点目录为脚本同级的 site/（即 wiki 检出目录下的 site），可通过 WIKI_ROOT 覆盖
+const DEFAULT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), 'site')
+const ROOT = resolve(process.env.WIKI_ROOT ?? DEFAULT_ROOT)
 const PREFIX = process.env.WIKI_PREFIX ?? '/wiki'
 
 const MIME = {
