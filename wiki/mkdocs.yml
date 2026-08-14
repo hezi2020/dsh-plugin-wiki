@@ -1,0 +1,183 @@
+site_name: DeepSeek Harness 中文 Wiki
+site_description: DeepSeek Harness 中文 Wiki —— 使用指南、开发文档、插件生态与竞品对比
+site_url: http://127.0.0.1:8000
+
+repo_url: https://github.com/deepseek-ai/deepseek-harness
+repo_name: deepseek-ai/deepseek-harness
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换至深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换至浅色模式
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+
+plugins:
+  - search
+
+nav:
+  - 首页: index.md
+  - 使用指南:
+      - 概览: usage/index.md
+      - 安装: usage/installation.md
+      - Web UI: usage/web-ui.md
+      - 配置模型: usage/providers.md
+      - Python SDK: usage/python-sdk.md
+      - CLI 命令: usage/cli.md
+      - 运行时模式: usage/runtime-modes.md
+      - Session 与 Trajectory: usage/session-trajectory.md
+      - 配置与 Profile: usage/configuration.md
+      - 部署排障: usage/troubleshooting.md
+  - 项目开发指南:
+      - 概览: development/index.md
+      - 架构与 Cordis 内核: development/architecture.md
+      - packages 布局: development/packages-layout.md
+      - 命令系统: development/commands.md
+      - 测试体系: development/testing.md
+      - 贡献流程: development/contributing.md
+  - 插件拓展指南:
+      - 概览: plugin-dev/index.md
+      - 插件机制总览: plugin-dev/overview.md
+      - dsh.bundle 规范: plugin-dev/dsh-bundle.md
+      - dsh plugin 命令: plugin-dev/plugin-command.md
+      - Profile: plugin-dev/profile.md
+      - Skill 规范: plugin-dev/skill.md
+      - 从零编写插件: plugin-dev/walkthrough.md
+  - 开发教程:
+      - 概览: dev-tutorial/index.md
+      - 基础教程:
+          - 第一个插件: dev-tutorial/basic/first-plugin.md
+          - 开发一个工具: dev-tutorial/basic/tool.md
+          - 插件配置: dev-tutorial/basic/config.md
+          - 打包与安装插件: dev-tutorial/basic/publish.md
+      - 框架能力:
+          - 插件与生命周期: dev-tutorial/framework/lifecycle.md
+          - 服务与依赖: dev-tutorial/framework/service.md
+          - 事件系统: dev-tutorial/framework/events.md
+      - 实践指南:
+          - 能力的三层拆分: dev-tutorial/practice/capability-layers.md
+          - LLM 适配器: dev-tutorial/practice/llm-adapter.md
+      - Cordis 框架教程:
+          - 总览: dev-tutorial/cordis-tutorial/index.md
+          - 1. 第一个插件: dev-tutorial/cordis-tutorial/01-first-plugin.md
+          - 2. 生命周期与 effect: dev-tutorial/cordis-tutorial/02-lifecycle.md
+          - 3. 服务: dev-tutorial/cordis-tutorial/03-services.md
+          - 4. 事件: dev-tutorial/cordis-tutorial/04-events.md
+          - 5. 配置: dev-tutorial/cordis-tutorial/05-config.md
+          - 6. 组合与 HMR: dev-tutorial/cordis-tutorial/06-composition-hmr.md
+          - 7. 进入 Harness: dev-tutorial/cordis-tutorial/07-into-harness.md
+  - 参考文档:
+      - 架构总览: reference/architecture.md
+      - Cordis 入门: reference/cordis-primer.md
+      - 配置目录: reference/config-catalog.md
+      - 实操手册: reference/cookbook.md
+  - 社区插件:
+      - 概览: plugins/index.md
+      - dsh-agent-teams: plugins/dsh-agent-teams.md
+      - dsh-web-ui: plugins/dsh-web-ui.md
+      - dsh-vision-toolkit: plugins/dsh-vision-toolkit.md
+      - DSH-better-sidebar: plugins/dsh-better-sidebar.md
+      - dsh-group-photo: plugins/dsh-group-photo.md
+      - dsh-track: plugins/dsh-track.md
+      - dsh-session-hub: plugins/dsh-session-hub.md
+      - dsh-session-deeplink: plugins/dsh-session-deeplink.md
+      - dsh-context: plugins/dsh-context.md
+      - dsh-auto-memory: plugins/dsh-auto-memory.md
+      - dsh-think-any-lang: plugins/dsh-think-any-lang.md
+      - dsh-mcp-panel: plugins/dsh-mcp-panel.md
+      - dsh-notification-center: plugins/dsh-notification-center.md
+      - dsh-attention-notifier: plugins/dsh-attention-notifier.md
+      - dsh-bottom-bar: plugins/dsh-bottom-bar.md
+      - dsh-outline: plugins/dsh-outline.md
+      - dsh-vision: plugins/dsh-vision.md
+      - modlens: plugins/modlens.md
+      - easy-vision: plugins/easy-vision.md
+      - dsh-imagecraft: plugins/dsh-imagecraft.md
+      - dsh-xiapan-media: plugins/dsh-xiapan-media.md
+      - dsh-image-subagent: plugins/dsh-image-subagent.md
+      - dsh-gui-customization: plugins/dsh-gui-customization.md
+      - dsh-ui-beautify: plugins/dsh-ui-beautify.md
+      - dsh-ui-appearance: plugins/dsh-ui-appearance.md
+      - deepseek-harness-themes: plugins/deepseek-harness-themes.md
+      - dsh-plugin-genshin-startup: plugins/dsh-plugin-genshin-startup.md
+      - dsh-file-explorer: plugins/dsh-file-explorer.md
+      - dsh-work: plugins/dsh-work.md
+      - anysearch-dsh: plugins/anysearch-dsh.md
+      - dsh-web-search-exa: plugins/dsh-web-search-exa.md
+      - dsh-net-proxy: plugins/dsh-net-proxy.md
+      - ego-browser: plugins/ego-browser.md
+      - dsh-github: plugins/dsh-github.md
+      - governed-workflow-for-dsh: plugins/governed-workflow-for-dsh.md
+      - dsh-clawrouter: plugins/dsh-clawrouter.md
+      - dsh-humanizer: plugins/dsh-humanizer.md
+      - TokenLedger: plugins/tokenledger.md
+      - dsh-plugins-marketplace: plugins/dsh-plugins-marketplace.md
+      - dsh-plugin-market: plugins/dsh-plugin-market.md
+      - dsh-plugin-hub: plugins/dsh-plugin-hub.md
+      - dsh-plugin-store: plugins/dsh-plugin-store.md
+      - dsh-plugin-installer: plugins/dsh-plugin-installer.md
+      - awesome-dsh-plugins: plugins/awesome-dsh-plugins.md
+      - deepseek-harness-101: plugins/deepseek-harness-101.md
+      - "deepseek-harness-desktop (anywhere)": plugins/deepseek-harness-desktop-anywhere.md
+      - "deepseek-harness-desktop (antinomie)": plugins/deepseek-harness-desktop-antinomie.md
+      - "DeepSeek Harness for VS Code": plugins/deepseek-harness-for-vs-code.md
+      - dsh-plugin-practice: plugins/dsh-plugin-practice.md
+      - jacobian: plugins/jacobian.md
+      - Mobius: plugins/mobius.md
+      - "AgentFrame v3": plugins/agentframe-v3.md
+      - Dizzy-DSH: plugins/dizzy-dsh.md
+      - DeepSeekHarnessRemoteGateway: plugins/deepseekharness-remote-gateway.md
+  - 竞品对比:
+      - 概览: comparison/index.md
+      - Trae: comparison/trae.md
+      - OpenAI Codex CLI: comparison/codex-cli.md
+      - Claude Code: comparison/claude-code.md
+      - AgentCLI: comparison/agentcli.md
+      - Pi Agent: comparison/pi.md
+      - 对比矩阵: comparison/matrix.md
+      - 优势与缺陷小结: comparison/summary.md
+  - 后续拓展:
+      - 概览: roadmap/index.md
+      - 多智能体编排: roadmap/direction-1-orchestration.md
+      - 运行时自演化: roadmap/direction-2-self-evolution.md
+      - IDE 与流水线集成: roadmap/direction-3-ide-integration.md
+      - 视觉多智能体: roadmap/direction-4-vision-multiagent.md

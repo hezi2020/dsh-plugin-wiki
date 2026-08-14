@@ -1,0 +1,9 @@
+# dsh-wiki-entry bundle patch layer.
+#
+# The row itself lives in the PROFILE's own `cordis.patch.yml` (the live,
+# HMR-watched user layer) so the plugin can be mounted without a web-server
+# restart and so a profile can drop the row independently of the package.
+# This bundle layer is intentionally empty: it keeps the package registered
+# as a profile bundle (code + `dsh.client` manifest) without double-inserting
+# the row after a restart.
+[]

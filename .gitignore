@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+uv.lock
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# DSH local
+.tmp_meta/
+_tmp_*/
+_tmp/
+
+# MkDocs build
+wiki/site/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
