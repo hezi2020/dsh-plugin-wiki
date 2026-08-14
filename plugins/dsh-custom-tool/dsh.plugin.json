@@ -1,0 +1,13 @@
+{
+  "id": "dsh-custom-tool",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "description": "User-defined JavaScript tools managed in the settings UI (Monaco editor with TypeScript intellisense); the model creates its own tools with custom_tool_create.",
+  "engines": {
+    "dsh": ">=0.0.1"
+  },
+  "contributes": {
+    "tools": ["custom_tool_create", "custom_tool_remove", "custom_tools_list"],
+    "skills": []
+  }
+}

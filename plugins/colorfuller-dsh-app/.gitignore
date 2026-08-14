@@ -1,0 +1,11 @@
+node_modules/
+runtime/
+npm-cli/
+dist-core/
+src-tauri/target/
+src-tauri/gen/
+src-tauri/binaries/
+src-tauri/runtime/
+src-tauri/icons
+.tmp/
+*.log

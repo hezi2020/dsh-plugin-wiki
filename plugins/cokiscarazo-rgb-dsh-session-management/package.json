@@ -1,0 +1,40 @@
+{
+  "name": "dsh-session-management",
+  "version": "1.0.2",
+  "description": "Session management for DSH Web: archive / unarchive / truly delete chats / export data (bilingual). 会话管理：归档 / 取消归档 / 真正删除聊天记录 / 导出数据（中英双语）。",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "session",
+    "archive",
+    "session-management"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cokiscarazo-rgb/dsh-session-management.git"
+  }
+}

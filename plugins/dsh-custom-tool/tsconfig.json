@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "WebWorker"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "lib/types",
+    "rootDir": "src",
+    "types": ["node"]
+  },
+  "include": ["src"]
+}

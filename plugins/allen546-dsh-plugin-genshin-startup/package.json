@@ -1,0 +1,47 @@
+{
+  "name": "dsh-plugin-genshin-startup",
+  "version": "1.0.0",
+  "description": "DeepSeek Harness (dsh) plugin: Plays the Genshin Impact launch video centered with white fill in autofullscreen on startup before entering the Harness main page.",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./assets/*": "./assets/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "files": [
+    "lib",
+    "assets",
+    "cordis.patch.yml"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "deepseek-harness",
+    "cordis",
+    "cordis-plugin",
+    "genshin-impact",
+    "genshin-launch"
+  ],
+  "author": "Allen Sun",
+  "license": "MIT"
+}

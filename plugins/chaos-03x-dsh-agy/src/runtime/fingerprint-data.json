@@ -1,0 +1,19 @@
+{
+  "comment": "Hot-updatable fingerprint data. Version pools and client strings must track the real Antigravity product; update this file (or ship an override) when a release ships. Kept out of code so stale versions never get compiled in.",
+  "versionPool": ["1.18.3", "1.17.0", "1.16.0"],
+  "platforms": ["windows/amd64", "darwin/arm64", "darwin/amd64"],
+  "architectures": ["x64", "arm64"],
+  "osVersions": {
+    "darwin": ["10.15.7", "11.6.8", "12.6.3", "13.5.2", "14.2.1", "14.5"],
+    "win32": ["10.0.19041", "10.0.19042", "10.0.19043", "10.0.22000", "10.0.22621", "10.0.22631"],
+    "linux": ["5.15.0", "5.19.0", "6.1.0", "6.2.0", "6.5.0", "6.6.0"]
+  },
+  "sdkClients": [
+    "google-cloud-sdk vscode_cloudshelleditor/0.1",
+    "google-cloud-sdk vscode/1.86.0",
+    "google-cloud-sdk vscode/1.87.0",
+    "google-cloud-sdk vscode/1.96.0"
+  ],
+  "ideTypes": ["ANTIGRAVITY"],
+  "pluginTypes": ["GEMINI"]
+}

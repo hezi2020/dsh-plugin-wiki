@@ -1,0 +1,4 @@
+# DeepSeek Harness Plugin Patch for Genshin Startup
+- insert:
+    - id: genshin-startup
+      name: 'dsh-plugin-genshin-startup'

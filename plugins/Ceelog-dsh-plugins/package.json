@@ -1,0 +1,23 @@
+{
+  "name": "dsh-plugins",
+  "private": true,
+  "description": "Out-of-tree DeepSeek Harness plugins workspace",
+  "type": "module",
+  "packageManager": "pnpm@11.12.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter './src/plugins/*' run build",
+    "typecheck": "pnpm -r --filter './src/plugins/*' run typecheck",
+    "test": "pnpm -r --filter './src/plugins/*' run test",
+    "format": "biome format --write .",
+    "lint": "biome check ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.8",
+    "@types/node": "^24.0.0",
+    "croner": "10.0.1",
+    "typescript": "^7.0.2"
+  }
+}

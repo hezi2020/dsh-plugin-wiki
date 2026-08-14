@@ -1,0 +1,6 @@
+# dsh-custom-tool bundle patch: mount the host plugin under its package name,
+# resolved through the profile's node_modules (the healed mirror makes every
+# bundle dependency resolvable to bare rows).
+- insert:
+    - id: dsh-custom-tool
+      name: dsh-custom-tool

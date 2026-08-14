@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/invariant.ts"],
+  "sourcesContent": ["/** Invariant companion: the plugin owns no event stream, so no runtime check is registered. */\nimport type { Context } from '@deepseek-ai/cordis'\n\nexport const name = 'dsh-custom-tool-invariant'\nexport const inject = ['invariants']\n\n/**\n * Register the companion without claiming a check.\n * No runtime invariant: dsh-custom-tool owns no event stream or durable log;\n * its settings-to-registry relationship is asserted by unit and composition tests.\n * @param ctx - the plugin context.\n */\nexport function apply(ctx: Context): Promise<() => void> {\n  return Promise.resolve(ctx.get('invariants').register('dsh-custom-tool', () => {}))\n}\n"],
+  "mappings": ";AAGO,IAAM,OAAO;AACb,IAAM,SAAS,CAAC,YAAY;AAQ5B,SAAS,MAAM,KAAmC;AACvD,SAAO,QAAQ,QAAQ,IAAI,IAAI,YAAY,EAAE,SAAS,mBAAmB,MAAM;AAAA,EAAC,CAAC,CAAC;AACpF;",
+  "names": []
+}

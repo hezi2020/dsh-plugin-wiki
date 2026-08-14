@@ -1,0 +1,64 @@
+{
+  "name": "dsh-xiapan-media",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness native vision, gpt-image-2 image generation, and Seedance video generation via Xiapan Cloud.",
+  "type": "module",
+  "main": "./vision.js",
+  "exports": {
+    ".": "./vision.js",
+    "./vision": "./vision.js",
+    "./image": "./image.js",
+    "./video": "./video.js"
+  },
+  "files": [
+    "vision.js",
+    "image.js",
+    "video.js",
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongsheng123132/dsh-xiapan-media.git"
+  },
+  "homepage": "https://github.com/dongsheng123132/dsh-xiapan-media#readme",
+  "bugs": {
+    "url": "https://github.com/dongsheng123132/dsh-xiapan-media/issues"
+  },
+  "engines": {
+    "node": ">=22.19.0",
+    "dsh": ">=0.1.0-rc.6"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "schemastery": "^3.18.0"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.1",
+    "@deepseek-ai/dsh-credentials": "0.0.1-rc.1",
+    "@deepseek-ai/dsh-tools": "0.0.1-rc.1"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "vision",
+    "image-generation",
+    "video-generation",
+    "gpt-image-2",
+    "seedance",
+    "xiapan-cloud",
+    "u-king"
+  ]
+}

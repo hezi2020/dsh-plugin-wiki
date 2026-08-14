@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepSeek Harness — Web UI</title>
+  <link rel="stylesheet" href="./assets/genshin-launch.css" />
+  <style>
+    /* Simulated DeepSeek Harness UI */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      height: 56px;
+      background-color: #161b22;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #58a6ff;
+    }
+    .brand-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: rgba(88, 166, 255, 0.15);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 999px;
+      color: #79c0ff;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .replay-btn {
+      background: #238636;
+      color: #ffffff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .replay-btn:hover {
+      background: #2ea043;
+    }
+    .main-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 260px;
+      background-color: #161b22;
+      border-right: 1px solid #30363d;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #8b949e;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .nav-item.active, .nav-item:hover {
+      background: #21262d;
+      color: #f0f6fc;
+    }
+    .content-area {
+      flex: 1;
+      padding: 32px 40px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .hero-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+    }
+    .hero-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 8px;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: #8b949e;
+      line-height: 1.6;
+      max-width: 650px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .status-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .status-label {
+      font-size: 12px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .status-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #58a6ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Simulated DeepSeek Harness UI -->
+  <header>
+    <div class="brand">
+      <span>DeepSeek Harness</span>
+      <span class="brand-badge">v0.1.0-preview</span>
+    </div>
+    <div class="header-actions">
+      <button class="replay-btn" id="replayBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+        </svg>
+        Replay Startup Video
+      </button>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="nav-item active">⚡ Agent Workspace</div>
+      <div class="nav-item">🧩 Plugin Manager</div>
+      <div class="nav-item">📜 Session Trajectory</div>
+      <div class="nav-item">⚙️ Settings</div>
+    </aside>
+
+    <main class="content-area">
+      <div class="hero-card">
+        <h1 class="hero-title">DeepSeek Harness Agent Runtime</h1>
+        <p class="hero-desc">
+          Startup video completed. You are now inside the main Harness workspace.
+        </p>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-label">Playback Mode</div>
+          <div class="status-value">Direct Autoplay</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Dialogs / Prompts</div>
+          <div class="status-value">None (Clean View)</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Background Fill</div>
+          <div class="status-value">#FFFFFF (Pure White)</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Aspect Ratio</div>
+          <div class="status-value">Non-Stretching Contain</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    window.__DSH_GENSHIN_CONFIG__ = {
+      videoSrc: './assets/genshin-launch.mp4',
+      videoFallbackSrc: './assets/genshin-launch.mov',
+      fillColor: '#ffffff'
+    };
+
+    document.getElementById('replayBtn').addEventListener('click', function () {
+      window.__DSH_GENSHIN_INITIALIZED__ = false;
+      const oldScript = document.querySelector('script[src*="genshin-launch.js"]');
+      if (oldScript) oldScript.remove();
+      const newScript = document.createElement('script');
+      newScript.src = './assets/genshin-launch.js?t=' + Date.now();
+      document.body.appendChild(newScript);
+    });
+  </script>
+  <script src="./assets/genshin-launch.js"></script>
+</body>
+</html>

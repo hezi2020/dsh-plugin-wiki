@@ -1,0 +1,37 @@
+name: Update catalog
+
+on:
+  schedule:
+    - cron: '17 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-catalog
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Refresh catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/update.mjs
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "Catalog is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md README_EN.md CATALOG.md TOP100.md data/repositories.json
+          git commit -m "data: refresh dsh-plugin catalog"
+          git push

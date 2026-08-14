@@ -1,0 +1,17 @@
+# Node
+node_modules/
+*.log
+
+# 本地临时文件与工具产物(不入库)
+.tmp-gaofeng/
+.dsh-vision-toolkit/
+.playwright-cli/
+
+# 收录的第三方插件内部产物(快照本身入库,产物不入库)
+third-party/**/node_modules/
+third-party/**/__pycache__/
+third-party/**/*.tgz
+
+# dsh-genui 快照:演示视频与上游锁文件不入库
+third-party/dsh-genui/assets/demo.mp4
+third-party/dsh-genui/pnpm-lock.yaml

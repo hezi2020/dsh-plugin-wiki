@@ -1,0 +1,82 @@
+{
+  "name": "dsh-humanizer",
+  "version": "0.1.0-rc.5",
+  "description": "中文文本人味化 bundle 插件：强制深层改写工作流（十维叙事审计 + 功能路径 + 15 层分布）+ 内容忠实守卫。编辑辅助，非 AI 检测器。",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./client": "./lib/client.js",
+    "./invariant": "./invariant.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "invariant.js",
+    "cordis.patch.yml",
+    "lib/",
+    "scripts/",
+    "references/",
+    "docs/",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "slots"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "prepublishOnly": "pnpm test",
+    "guard": "node scripts/guard-humanizer.mjs"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6",
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEEP-IOS/dsh-humanizer.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+
+    "humanizer",
+    "chinese-writing",
+    "novel",
+    "去AI味"
+  ],
+  "license": "MIT"
+}
+
+
+
+
+
+
+
+
+
+
+
+

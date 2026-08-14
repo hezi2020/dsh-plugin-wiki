@@ -1,0 +1,63 @@
+# Dizzy-DSH 插件合集(patch 挂载层)
+#
+# 本文件由 dsh plugin add 安装后自动挂载:
+#   dsh plugin --profile web add file:<本仓库路径>
+#
+# 格式:与 dsh-base/cordis.patch.yml 一致 —— 顶层是一个 insert 条目,
+# 下面的每一项都是要挂载的插件行(entry)。
+#
+# 注意:entry 的 name 必须是【包名】,而不是插件文件路径:
+#   - Host 半区:loader 按包名 import 包的 main(index.js)挂载插件
+#   - Client 半区:client-modules 按包名扫描 dsh.client 声明 + exports["./client"],
+#     自动把 client bundle 注入浏览器
+# 自有子包(plugins/*)经主包 dependencies 的 file: 依赖安装并提升到
+# profile 顶层 node_modules,与 @dsh-external/dsh-vision-toolkit 同构。
+#
+# 新增插件:在 plugins/ 下建子包(自己的 package.json/main/client bundle),
+# 主包 package.json 加 file: 依赖,再在本文件加一行 entry。
+
+- insert:
+    # ── 自有插件(子包,随主包 file: 依赖安装)────────────────────
+    # 余额:Host 每分钟刷新余额 + /dizzy/balance + balance_check 工具;
+    #       Client: conversation.input.right 徽章。
+    - id: balance
+      name: 'dizzy-dsh-balance'
+
+    # 本月用量视图:Host 聚合本地会话日志 + /dizzy/usage;
+    #       Client: conversation.view「用量」Tab(对话/轨迹右侧)。
+    - id: usage-card
+      name: 'dizzy-dsh-usage-card'
+
+    # Agent 规则注入:systemPrompt.section(order -50)读本子包
+    #       prompts/agent-instructions.md。
+    # 不可用 id: agent-instructions —— 那是 dsh-base 里
+    # @deepseek-ai/dsh-agent-instructions 的官方 entry;web-app 虽把它
+    # disabled,id 仍占着,再 insert 同 id 会在 boot 抛
+    # "duplicate loader entry id: agent-instructions"。
+    - id: dizzy-agent-instructions
+      name: 'dizzy-dsh-agent-instructions'
+
+    # Kimi WebBridge 浏览器控制:控制用户真实浏览器(daemon 127.0.0.1:10086 +
+    # 浏览器扩展)。渐进式披露:全局仅暴露 kimi_browser_activate 引导工具,
+    # 模型调用后才注入全套 kimi_browser_* 工具(参考 vision-toolkit 做法)。
+    - id: kimi-webbridge
+      name: 'dizzy-dsh-kimi-webbridge'
+
+    # ── 收录的第三方插件(随主包依赖安装,见 package.json)────────
+    # 说明:这两个包通过主包 dependencies(registry / file:./third-party/...)
+    # 随主包安装,profile 的 pnpm-workspace.yaml 为 hoisted 模式,传递依赖
+    # 提升到顶层 node_modules,loader 按包名即可 import。无需单独 dsh plugin add。
+    - id: better-sidebar
+      name: 'dsh-better-sidebar'
+    - id: dsh-vision-toolkit
+      name: '@dsh-external/dsh-vision-toolkit'
+
+    # GenUI:模型在回答正文内输出 dsh-ui 围栏(JSON 规格),浏览器端渲染
+    # 为可交互组件(卡片/图表/表单/quiz/mermaid/3D),action 事件环回传模型。
+    - id: genui
+      name: '@omdsh-dev/dsh-genui'
+
+    # 桌面通知:会话跑完一轮任务时弹系统通知(设置 > 通知 可配状态/关键词
+    # 规则)。纯 UI,对模型零影响(无工具、无提示词、无日志写入)。
+    - id: dsh-notification
+      name: 'dsh-notification'

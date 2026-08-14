@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (${{ matrix.os }} / node ${{ matrix.node }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [22, 24]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # fixture-driven unit tests: no network, no real accounts
+      - run: pnpm test
+      - run: pnpm exec tsc --noEmit
+      - run: pnpm run build
+      # verify the publishable artifact assembles from a clean install
+      - run: npm pack --dry-run
+      - name: smoke-test CLI from the packed artifact
+        run: |
+          pnpm pack --pack-destination .
+          PKG=$(ls dsh-agy-*.tgz | head -n 1)
+          TARBALL_PATH="$(pwd)/$PKG"
+          mkdir -p /tmp/dsh-agy-smoke && cd /tmp/dsh-agy-smoke
+          npm init -y -s
+          # CLI must work with zero @deepseek-ai peer packages installed
+          # (peerDependenciesMeta optional contract)
+          npm i --omit=peer "$TARBALL_PATH"
+          ./node_modules/.bin/dsh-agy --help > /dev/null
+          # plugin entrypoints need the peer packages (a real DSH profile provides them)
+          npm i "$TARBALL_PATH" \
+            "@deepseek-ai/dsh-llm@$(node -p "require('$GITHUB_WORKSPACE/package.json').peerDependencies['@deepseek-ai/dsh-llm']")" \
+            "@deepseek-ai/cordis@$(node -p "require('$GITHUB_WORKSPACE/package.json').peerDependencies['@deepseek-ai/cordis']")"
+          node -e "import('dsh-agy').then(m=>{if(!m.apply)process.exit(1)})"
+          node -e "import('dsh-agy/web').then(m=>{if(!m.apply)process.exit(1)})"
+        shell: bash

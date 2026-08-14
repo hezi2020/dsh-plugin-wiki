@@ -1,0 +1,117 @@
+{
+  "name": "@opendsh/dsh-plugin-scheduled-tasks",
+  "version": "0.1.1",
+  "description": "DSH web plugin: per-project scheduled tasks with prompts, executed as headless agent sessions in the project directory, with durable run history",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ceelog/dsh-plugins.git",
+    "directory": "src/plugins/dsh-plugin-scheduled-tasks"
+  },
+  "homepage": "https://github.com/Ceelog/dsh-plugins#readme",
+  "bugs": {
+    "url": "https://github.com/Ceelog/dsh-plugins/issues"
+  },
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./typert": {
+      "types": "./lib/types/typert.d.ts",
+      "default": "./lib/typert.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsdown && node scripts/wrap-client.mjs",
+    "release": "pnpm run build && npm publish --access public --ignore-scripts",
+    "typecheck": "tsc --noEmit",
+    "bundle": "tsdown && node scripts/wrap-client.mjs",
+    "test": "vitest run",
+    "format": "biome format --write src tests",
+    "lint": "biome check src tests"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-agent": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-agent-default-model": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-llm": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-session": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-storage-domain": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-typert-protocol": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-workspace": "^0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^3.18.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zod": "^4.0.0",
+    "@deepseek-ai/dsh-client-ui-primitives": "^0.1.0-rc.6"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-agent": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-agent-default-model": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-connection": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-sidebar": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-slots": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-llm": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-session": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-storage": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-storage-domain": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-storage-json": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-tools": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-typert-protocol": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-workspace": "^0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^3.18.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "~18.3.1",
+    "@types/react-dom": "~18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsdown": "^0.22.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.0.0",
+    "zod": "^4.0.0"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-client-ui-primitives": "0.1.0-rc.6",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6",
+    "croner": "^10.0.1"
+  }
+}

@@ -1,0 +1,29 @@
+# One open-source bundle, three independently removable native DSH plugins.
+- insert:
+    - id: dsh-xiapan-vision
+      name: 'dsh-xiapan-media/vision'
+      config:
+        providerId: xiapan-vision
+        innerProvider: uking-managed
+        baseURL: https://api.u-claw.org.cn/v1
+        credentialRef: UKING_DSH_API_KEY
+        model: qwen3.7-flash
+        workspaceRoot: .
+    - id: dsh-xiapan-image
+      name: 'dsh-xiapan-media/image'
+      config:
+        baseURL: https://api.u-claw.org.cn/v1
+        credentialRef: UKING_DSH_API_KEY
+        model: gpt-image-2
+        workspaceRoot: .
+        artifactDir: .dsh-media
+        requireApproval: true
+    - id: dsh-xiapan-video
+      name: 'dsh-xiapan-media/video'
+      config:
+        baseURL: https://api.u-claw.org.cn/v1
+        credentialRef: UKING_DSH_API_KEY
+        model: doubao-seedance-2-0-mini-260615
+        workspaceRoot: .
+        artifactDir: .dsh-media
+        requireApproval: true

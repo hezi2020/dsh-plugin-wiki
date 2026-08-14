@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install the package manager required by DSH plugin profiles
+        run: npm install --global pnpm@10.15.0
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - run: npm pack --dry-run
+      - name: Compose bundle in an isolated DSH profile
+        shell: pwsh
+        run: |
+          $env:DSH_HOME = Join-Path $env:RUNNER_TEMP 'dsh-xiapan-media-home'
+          npx -y @deepseek-ai/dsh@0.1.0-rc.6 --profile headless --dump-default-config | Out-Null
+          npx -y @deepseek-ai/dsh@0.1.0-rc.6 plugin --profile headless add "link:$env:GITHUB_WORKSPACE"
+          $config = (npx -y @deepseek-ai/dsh@0.1.0-rc.6 --profile headless --dump-config) -join "`n"
+          foreach ($id in @('dsh-xiapan-vision', 'dsh-xiapan-image', 'dsh-xiapan-video')) {
+            if ($config -notmatch [regex]::Escape($id)) { throw "bundle missing $id" }
+          }
+          npx -y @deepseek-ai/dsh@0.1.0-rc.6 --profile headless --help | Out-Null
